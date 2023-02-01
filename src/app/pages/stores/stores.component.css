@@ -1,0 +1,48 @@
+#sidebar-container{
+    min-height: 100vh;
+}
+
+#sidebar-container .subtitle{
+    padding: .875rem 1.25rem;
+    text-align: center;
+}
+
+#sidebar-container .menu{
+    width: 18rem;
+}
+
+.store_for_user a{
+    text-decoration: none;
+}
+
+.store_for_user h4{
+    font-size: 20px;
+}
+
+.store_for_user p{
+    font-size: 15px;
+}
+
+/* .text-bg-dark{
+    box-shadow: 10px 0 5px 0 black
+} */
+
+.botonP {
+    text-align: center;
+}
+
+.store_for_user{
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+.tienda{
+	transition: 0.1s;
+}
+
+.tienda:hover{
+	transform: scale(1.00);
+	box-shadow: 0 5px 20px #033f49 ;
+}

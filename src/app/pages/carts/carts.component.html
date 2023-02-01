@@ -1,0 +1,88 @@
+<div class="container">
+
+    <div class="d-flex mt-5 mb-5 ">
+        <h1>Tus carritos</h1>
+        <i-bs name="cart2" width="2.5rem" height="2.5rem"></i-bs>  
+    </div>
+
+    <ngb-accordion [closeOthers]="true">
+
+        <ngb-panel>
+            <ng-template ngbPanelTitle>
+                <div>
+                    Carrito N°2 (ACTIVO)
+                </div>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Producto P</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <h3>Total: 500</h3>
+                  <button type="submit" class="btn btn-warning">Confirmar compra</button>
+            </ng-template>
+        </ngb-panel>
+      
+        <ngb-panel *ngFor="let carrito of carritos" >
+            <ng-template ngbPanelTitle >
+                <div (click)="mostrarCarrito(carrito)">
+                    <h4>Carrito de {{carrito.tiendaVendedor.vendedor.nombre}}</h4>
+                    <p>Estado: {{carrito.estado}}</p>
+                    
+                </div>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Producto P</th>
+                    <th scope="col">Precio unitario</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let producto of (carrito.productos),index as id">
+                    <th scope="row">{{id + 1}}</th>
+                    <td>{{producto.producto.producto_Base.nombre}}</td>
+                    <td>{{producto.producto.precio}}</td>
+                    <td>{{producto.cantidad}}</td>
+                    <td>{{(producto.producto.producto_Base.precio_Base + producto.producto.precio) * producto.cantidad | currency}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h3>{{ total | currency }}</h3>
+              <button type="submit" class="btn btn-warning">Confirmar compra</button>
+            </ng-template>
+        </ngb-panel>
+
+    </ngb-accordion>
+    
+</div>

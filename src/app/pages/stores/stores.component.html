@@ -1,0 +1,89 @@
+<div class="">
+    <div class="row container-sm">    
+        <div class="d-flex col-3">
+            <div id="sidebar-container" class="text-bg-dark">
+                <div class="subtitle" (click)="mostrarTodosPrudctosP()">
+                    <h3 class="font-weight-bold">Tiendas</h3>
+                </div>
+                <div class="menu">
+
+                    <div class="store_for_user tienda">
+                        <div class="user_store d-block text-light p-3">
+                            <i-bs name="person-circle" width="1.5rem" height="1.5rem"></i-bs>  
+                        </div>
+                        <div class="name d-block text-light p-3">
+                            <h4>NOMBRE</h4>
+                        </div>
+                    </div>
+
+                    <div class="store_for_user tienda" *ngFor="let vendedor of vendedores" (click)="mostrarProductosP(vendedor.id,vendedor.nombre)">
+                        <a class="user_store d-block text-light p-3">
+                                <i-bs name="person-circle" width="1.5rem" height="1.5rem"></i-bs>  
+                        </a>
+                        <div class="name d-block text-light p-3">
+                            <h4>{{vendedor.nombre}}</h4>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-9">
+            <h3 class="mt-5">{{indice}}</h3>
+            <table class="table table-hover mt-5">
+                <thead class="thead-dark"> 
+                    <tr>
+                        <th scope="col">Vendedor</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Personalizaciones</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Carrito</th>                      
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">Prueba</td>
+                        <td>Prueba</td>
+                        <td class="botonP"><button class="btn btn-warning btn-sm">Personalizaciones</button></td>
+                        <td>Prueba</td>
+                        <td>Prueba</td>
+                        <td>
+                            <form>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="number" id="tentacles" name="tentacles"
+                                        min="1" max="100" class="form-control mb-2" >
+                                    </div>
+                                    <div class="col">
+                                        <button class="btn btn-success btn-sm">Agregar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr *ngFor="let productoP of productosP">
+                        <td scope="row">{{productoP.vendedor.nombre}}</td>
+                        <td>{{productoP.producto_Base.nombre}}</td>
+                        <td class="botonP"><button class="btn btn-warning btn-sm">Personalizaciones</button></td>
+                        <td>{{productoP.categoria.categoria}}</td>
+                        <td>{{productoP.precio | currency}}</td>
+                        <td>
+                            <form [formGroup]="addToCartForm" (ngSubmit)="agregarAlCarrito(addToCartForm.value,productoP.id)">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="number" id="tentacles" name="tentacles"
+                                        min="1" max="100" class="form-control mb-2" formControlName = "cantidad">
+                                    </div>
+                                    <div class="col">
+                                        <button type="submit" class="btn btn-success btn-sm">Agregar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
